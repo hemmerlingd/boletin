@@ -1,0 +1,215 @@
+
+.bg-azul {
+  background-color:  #004b81;
+}
+.border-azul {
+  border: 2px solid #004b81;
+}
+.fill-white {
+  fill: white;
+  width: 30px;
+}
+.fill-white a:visited {
+  fill: white;
+}
+
+.horario-extendido {
+
+  width: 100%;
+  height: auto;
+  background-color: #004b81; /* Card background color */
+    padding: 0 20px 20px !important;
+  color: white;
+  font-family: Arial, sans-serif;
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+}
+
+.header-horario {
+  position: relative;
+  width: 50%;
+  height: 85px;
+  top: 0;
+  left: -20px;
+  background-color: #348bc9;
+  border-radius: 16px 10px 75px 75px;
+  box-shadow: 10px 15px #143857;
+  position: relative;
+    z-index: 10;
+}
+
+.deco img{
+    width: 300px;
+    top: 75px;
+    position: absolute;
+    left: -185px;
+    filter: opacity(0.2);
+}
+.deco2 img{
+    width: 300px;
+    bottom: -50%;
+    position: absolute;
+    right: -40px;
+    filter: opacity(0.2);
+}
+
+.tituloNoticia{
+    font-size: 21px;
+        color: #004B81;
+    letter-spacing: -1px;
+}
+.cpc-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  border-radius: 50%;
+  padding: 10px 0 0 20px;
+  width: 100%;
+}
+.cpc-logo img{
+  width: 80%;
+}
+
+
+.horario-extendido ul {
+  list-style: none;
+}
+
+.horario-extendido li{
+  display: flex; 
+  align-items: flex-end;
+}
+
+.horario-extendido li p{
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #d07386;
+  }
+
+  .horario-extendido li .nombre{
+    color: #ffffff;
+    text-shadow: -3px 3px 10px black;
+  }
+  .horario-extendido li .direccion{
+    color: #e7e7e7;
+    text-shadow: -3px 3px 10px black;
+  }
+
+.img-programas{
+  filter: drop-shadow(0px 0px 19px black);
+}
+
+.img-noticia {
+    max-width: 150px;
+    height: 150px; 
+    object-fit: cover;
+}
+.body-horario{
+    position: relative;
+    top: 20px;
+    font-size: 25px;
+}
+
+.footer {
+    position: relative;
+    left: 2px;
+    width: 90%;
+    background-color: #d07386ab;
+    padding: 5px;
+    margin:10px;
+    border-radius: 20px;
+}
+
+.footer p {
+  margin-bottom: 0;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.2;
+  padding: 5px 15px;
+  text-align: left;
+}
+
+.eventos .card{
+  width: 100%;
+  max-width: 300px;
+;
+}
+.eventos .card img{
+    width: 100%;
+    max-width: 100px;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (width < 1024px) {
+    .img-noticia {
+      width: 100%;
+      max-width: 500px;
+    }
+}
+// @media (width < 480px) {
+//   .horario-extendido {
+//     height: 500px;
+//   }
+
+//   .body-horario{
+//     top: 35% !important;
+//     left: 10% !important;
+//   }
+
+//   .header-horario {
+//     width: 95%;
+//     height: 50px;
+//   }
+//   .deco img{
+//     top: 10%;
+//     left: -395px;
+//   }
+//   .deco2 img{
+//     /* width: 500px;
+//     bottom: -10%;
+//     transform: rotate(-90deg);
+//     right: -250px; */
+//     display: none;
+//   }
+  
+//   .cpc-logo {
+//     padding: 20px;
+//   }
+//   .cpc-logo img{
+//     width: 80% !important;
+//   }
+
+//   li p{
+//   font-size: 20px;
+//   margin-left: 0px;
+//   margin-right: 0px;
+//   line-height: 1;
+//   }
+// }
+
+
+// @media (width < 840px) {
+//   .body-horario{
+//     top: 35%;
+//     left: 15%;
+//   }
+
+//   .header-horario {
+//     height: 130px;
+//   }
+//   .body-horario{
+//     top: 15%;
+//     left: 35%;
+//   }
+
+
+//   li p{
+//   font-size: 20px;
+//   line-height: 1;
+//   }
+// }

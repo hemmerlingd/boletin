@@ -1,1 +1,293 @@
-<app-noticias></app-noticias>
+<div class="container ">
+  <div class="row mx-2">
+    <!-- /***** HEADER *****/ -->
+    <div class="m-0 text-center mb-2 bg-azul text-white p-3 rounded mt-5 p-0 d-flex justify-content-evenly align-items-center"
+    >
+      <img
+        src="https://cordoba.gob.ar/wp-content/uploads/2023/12/Logo-blanco-e1702566943562.png"
+        width="90"
+        alt="Municipalidad de Córdoba"
+        srcset=""
+      />
+      <h1 class="flex-grow-1 text-white">RESUMEN DE NOTICIAS</h1>
+    </div>
+     <!-- /***** CONTENIDO *****/ -->
+    <div class="col-lg-8 d-flex flex-column justify-content-start border-azul rounded">
+      <!-- /***** NOTICIAS *****/ -->
+     <a
+        [href]="item.link"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="d-flex flex-column flex-md-row my-2 gap-2 rounded border text-decoration-none text-dark position-relative"
+        *ngFor="let item of noticias | slice : 0 : mostrar"
+        >
+        <img
+            [src]="item.yoast_head_json.og_image[0]?.url"
+            alt="{{ item.title.rendered }}"
+            class="img-fluid rounded border border-4 my-1 w-100 w-md-25 img-noticia"
+            *ngIf="item.yoast_head_json.og_image"
+        />
+
+        <div class="content-noticia flex-grow-1">
+            <span *ngIf="esDestacada(item)" class="destacada float-end fs-3">⭐</span>
+            <h2 class="font-weight-bold tituloNoticia">
+            {{ item.title.rendered }}
+            </h2>
+            <span [innerHTML]="item.excerpt.rendered | slice : 0 : 140"></span>
+            <small class="fecha position-absolute bottom-0 end-0 me-3">
+            {{ item.date | date }}
+            </small>
+        </div>
+        </a>
+
+      <p class="text-center" *ngIf="noticias.length === 0">
+        No hay noticias disponibles.
+      </p>
+  
+      <div class="boton text-center mb-2">
+        <button
+          class="btn bg-azul text-white mt-2 fs-3"
+          (click)="mostrar = mostrar + 3"
+          >Mostrar más</button
+        >
+      </div>
+    </div>
+     <!-- /***** BARRA LATERAL *****/ -->
+    <div class="col-lg-4 d-flex flex-column pe-0 mt-3 mt-lg-0">
+      <!-- /***** CORTES *****/ -->
+      <!-- <div class="cortes bg-azul text-white rounded position-relative mb-1">
+       <a
+                    href="https://www.cordoba.gob.ar/cortes-de-transito"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-decoration-none fs-6">
+        <div class="w-100  position-relative h-100">
+          
+            <h4 class="w-100 text-center text-white p-3">CORTES DE TRÁNSITO</h4>
+         
+        </div>
+          </a
+                  >
+      </div> -->
+      <!-- /***** RECURSOS *****/ -->
+        <div class="col-md-12 bg-azul text-white mb-3 p-3 rounded h-75">
+      <div class="h-100">
+        <div class="border border-white rounded p-4 p-sm-4 h-100">
+          <h4 class="text-center pb-3 text-white">Recursos</h4>
+          <div class="recursos d-flex flex-wrap justify-content-evenly align-content-center  h-100 pb-4">
+            <a
+              href="https://www.cordoba.gob.ar/cortes-de-transito"
+              target="_blank"
+              class="text-center text-decoration-none text-white w-50 mb-5 "
+              rel="noopener noreferrer"
+              ><img
+                src="https://cordoba.gob.ar/wp-content/uploads/2025/09/transito.png"
+                alt="Conoce tu CPC"
+                width="60"
+                srcset=""
+              /><br />CORTES <br />DE TRANSITO</a
+            >
+            <a
+              href="https://ambiente.cordoba.gob.ar/residuos/"
+              target="_blank"
+              class="text-center text-decoration-none text-white w-50 mb-5"
+              rel="noopener noreferrer"
+              ><img
+                src="https://cordoba.gob.ar/wp-content/uploads/2025/06/recoleccion.png"
+                alt="Conoce tu CPC"
+                width="40"
+                srcset=""
+              /><br />RECOLECCION <br />DIFERENCIADA</a
+            >
+            <a
+              href="https://guiadetramites.cordoba.gob.ar/?_gl=1*wdz5v2*_ga*MTQwMzQ3NjA0MS4xNzQxNjk2MjQy*_ga_YV020CR5PJ*czE3NDg5NTg0NTMkbzQ1JGcxJHQxNzQ4OTU5MTEwJGo2MCRsMCRoMA..#/ciudadano"
+              target="_blank"
+              class="text-center text-decoration-none text-white w-50 mb-5"
+              rel="noopener noreferrer"
+              ><img
+                src="https://cordoba.gob.ar/wp-content/uploads/2025/06/GUIA-CBA-BTN-HOME.png"
+                alt="Conoce tu CPC"
+                width="70"
+                srcset=""
+              /><br />GUIA DE <br />TRAMITES</a
+            >
+            <a
+              href="https://boletinmunicipal.cordoba.gob.ar/"
+              class="text-center text-decoration-none text-white w-50 mb-5"
+              target="_blank"
+              ><img
+                src="https://cordoba.gob.ar/wp-content/uploads/2025/06/BOE.svg"
+                alt="BOE"
+                width="60"
+                srcset=""
+              /><br />BOLETIN<br />
+              OFICIAL</a
+            >
+            <a
+              href="https://www.google.com/maps/d/embed?mid=1buER4Dakctakkv-MIHiaIMFDNprkDjE&ehbc=2E312F"
+              class="text-center text-decoration-none text-white w-50 mb-5"
+              target="_blank"
+              ><img
+                src="https://cordoba.gob.ar/wp-content/uploads/2025/09/salud-mapa-white.png"
+                alt="Mapa Salud"
+                width="90"
+                srcset=""
+              /><br />MAPA<br />
+              SALUD</a
+            >
+                      <a
+              href="https://www.google.com/maps/d/u/0/viewer?hl=es&mid=1w_ONdMobw3Gg-Sj29miHC0bU6b1ED5A&ll=-31.40135599524044%2C-64.17717499999998&z=12"
+              class="text-center text-decoration-none text-white w-50 mb-5"
+              target="_blank"
+              ><img
+                src="https://cordoba.gob.ar/wp-content/uploads/2025/09/mapa-educacion.png"
+                alt="Mapa Educacion"
+                width="90"
+                srcset=""
+              /><br />MAPA<br />
+              EDUCACIÓN</a
+            >
+            <a
+              href="https://cordoba.gob.ar/appciudadana/"
+              class="text-center text-decoration-none text-white w-50 mb-5"
+              target="_blank"
+              ><img
+                src="https://ambiente.cordoba.gob.ar/wp-content/uploads/sites/12/2025/04/logo-blanco-grande.png"
+                alt="Mapa Educacion"
+                width="60"
+                srcset=""
+              /><br />APP<br />
+              CIUDADANA</a
+            >
+            <a
+              href="https://cordoba.gob.ar/tu-bondi/"
+              class="text-center text-decoration-none text-white w-50 mb-5"
+              target="_blank"
+              ><img
+                src="https://cordoba.gob.ar/wp-content/uploads/2025/09/tubondi.png"
+                alt="Mapa Educacion"
+                width="60"
+                srcset=""
+              /><br />TU<br />
+              BONDI</a
+            >
+            <a
+              href="https://bicicba.com/biciweb/components/landingPage/landingPage.php?conf=bicicba"
+              class="text-center text-decoration-none text-white w-50 mb-5"
+              target="_blank"
+              ><img
+                src="https://cordoba.gob.ar/wp-content/uploads/2025/09/bicicba.png"
+                alt="Mapa Educacion"
+                width="90"
+                srcset=""
+              /><br />BICI<br />
+              CBA</a
+            >
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
+  <!-- /***** HORARIOS CPC *****/ -->
+      <div class="col-md-12 horario-extendido rounded mt-3 flex-grow-1">
+        <div class="header-horario">
+          <span class="cpc-logo">
+            <img
+              src="https://cordoba.gob.ar/wp-content/uploads/2025/06/CPC.png"
+              alt="Logo CPC"
+            />
+          </span>
+        </div>
+  
+        <div class="deco">
+          <img
+            src="https://cordoba.gob.ar/wp-content/uploads/2023/12/Logo-blanco-e1702566943562.png"
+            alt="Decoración"
+          />
+        </div>
+  
+        <div class="deco2">
+          <img
+            src="https://cordoba.gob.ar/wp-content/uploads/2025/06/logo-CPC.png"
+            alt="Decoración"
+          />
+        </div>
+        <div class="body-horario h-100">
+          <ul>
+            <li *ngFor="let cpc of CPCExtendidos">
+              <p>
+                <span class="nombre">{{ cpc.properties.name }}</span> 
+                <!-- <span class="direccion">{{ cpc.properties.Direccion_CPC }}</span> -->
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="footer position-absolute bottom-0">
+          <p class="text-center">
+            Lunes a viernes de 8 a 18hs
+            <br />
+            Sábados de 8 a 14hs
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- /***** SERVICIOS *****/ -->
+    <div class="servicios bg-azul text-white p-3 rounded mt-3 flex-grow-1" *ngIf="programas.length > 0">
+      <h4 class="text-center pt-3 text-white">No te pierdas esta información</h4>
+      <div class="d-flex flex-wrap gap-1 justify-content-evenly fs-6">
+        <div class="programas my-3" *ngFor="let programa of programas">
+          <a
+            href="{{ getURL(programa) }}"
+            target="_blank"
+            class="text-decoration-none text-white"
+          >
+            <img
+              class="img-programas object-fit-contain rounded img-fluid"
+              src="{{ programa.guid.rendered }}"
+              width="400"
+              height="300"
+              alt="{{ programa.title.rendered }}"
+              srcset="{{ programa.guid.rendered }}"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- /***** EVENTOS *****/ -->
+      <div class="eventos bg-azul text-white rounded position-relative h-75 text-center my-3 pb-3">
+        <h4 class="text-center mt-3 text-white">AGENDA CULTURAL</h4>
+        <div class="p-4 h-100 text-center overflow-auto d-flex flex-wrap gap-3 justify-content-center">
+          <div *ngFor="let item of eventos | slice : 0 : 9" class=" flex-grow-1 flex-fill card">
+            <div class=" mb-2 d-flex align-items-center gap-3 flex-grow-1 flex-fill h-100 bg-light rounded p-3 ">
+              <img src="{{ item.imagen }}" alt="" 
+              class="text-black border-end border-3 pe-3 border-primary fs-4 ">
+                <div class="d-flex flex-column justify-content-evenly h-100 w-100">
+                    <div
+                    class="text-black border-bottom border-3 pe-3 border-primary fs-4 "
+                    >🗓️ {{ item.fecha_ini.split("/")[0] }}/{{
+                      item.fecha_ini.split("/")[1]
+                    }}</div>
+                                  <a
+                    class="text-decoration-none text-black w-100"
+                    href="https://cultura.cordoba.gob.ar/agenda/evento?id={{
+                      item.id_evento
+                    }}"
+                    target="_blank"
+                    >{{ item.nombre }} ({{ item.tipo[0] }})</a
+                                  >
+                </div>
+            </div>
+          </div>
+        </div>
+        <a
+          href="https://cultura.cordoba.gob.ar/agenda"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-light mt-3 fs-3"
+          >Ver Todos</a
+        >
+      </div>
+  
+  </div>
+</div>

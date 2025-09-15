@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { kml } from '@tmcw/togeojson';
+import { forkJoin, map } from 'rxjs';
 import { Actividad } from 'src/app/models/actividad.models';
 
 @Injectable({
@@ -12,11 +13,21 @@ export class DataService {
  All: Actividad[] = [];
   constructor(public http: HttpClient) {
  
-   
+  //  
   }
 
   leerNoticias() {
-  var data= this.http.get('https://cordoba.gob.ar/wp-json/wp/v2/posts?per_page=10');
+  var data= this.http.get('https://cordoba.gob.ar/wp-json/wp/v2/posts?per_page=100');
+
+    return data;
+  }
+    leerProgramas() {
+  const req1 = this.http.get('https://cordoba.gob.ar/wp-json/wp/v2/media?per_page=100&page=1');
+  const req2 = this.http.get('https://cordoba.gob.ar/wp-json/wp/v2/media?per_page=100&page=2');
+  const req3 = this.http.get('https://cordoba.gob.ar/wp-json/wp/v2/media?per_page=100&page=3');
+  const data = forkJoin([req1, req2, req3]).pipe(
+    map((results: any[]) => [].concat(...results))
+  );
 
     return data;
   }
@@ -25,6 +36,11 @@ export class DataService {
     var URL = `https://docs.google.com/spreadsheets/d/${this.Sheet_ID}/gviz/tq?tqx=out:json`;
     return this.http.get(URL,{ responseType: 'text' })
 
+  }
+  
+  filtrarProgramas(progr){
+    
+   return progr.filter((programa: any) => programa.title.rendered.includes('Destacada'));
   }
 
    async Leer() {
@@ -35,6 +51,12 @@ export class DataService {
     return response.text().then(function (xml) {
       return (kml(new DOMParser().parseFromString(xml, "text/xml")).features);
     });// parses JSON response into native JavaScript objects
+  }
+
+  cortesTransito() {
+    var data= this.http.get('https://cordoba.gob.ar/wp-json/wp/v2/pages/78619?nocache='+Math.random());
+
+    return data;
   }
 
 
@@ -62,6 +84,7 @@ export class DataService {
           this.All.push(estaSemana);
         });
       });
+     console.log(this.All);
      
   return this.All;
   }
